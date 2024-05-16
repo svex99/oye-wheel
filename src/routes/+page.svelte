@@ -2,7 +2,7 @@
 	import { tick } from 'svelte';
 	import { scale, slide, fly, fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	import { options, message, completedCookieKey } from '$lib';
+	import { options, message, completedCookieKey, padTimeNumber } from '$lib';
 	import retry from '$lib/assets/retry.svg';
 
 	export let data;
@@ -15,6 +15,18 @@
 
 	// new addition
 	let n = options.length;
+
+	let now = new Date();
+
+	$: [timeH, timeM, timeS] = [
+		padTimeNumber(23 - now.getHours()),
+		padTimeNumber(59 - now.getMinutes()),
+		padTimeNumber(59 - now.getSeconds())
+	];
+
+	setInterval(() => {
+		now = new Date();
+	});
 
 	function spinWheel() {
 		rotating = true;
@@ -53,7 +65,7 @@
 		<!--Center of wheel-->
 		{#if !completed && !rotating}
 			<button
-				class="spinner-button wheel-center bg-[#e72d3b] text-white hover:bg-[#e72d3b] hover:bg-[#e72d3b]/90 absolute shadow-xl"
+				class="spinner-button wheel-center absolute bg-[#e72d3b] text-white shadow-xl hover:bg-[#e72d3b] hover:bg-[#e72d3b]/90"
 				in:scale|global
 				out:fade
 				on:click={async () => {
@@ -106,12 +118,21 @@
 				</div>
 			</div>
 		{:else}
-			<div class="flex flex-col items-center sm:items-start gap-y-5">
-				<img
-					src="https://assets.hotsale.com.mx/public/hotsale-mx/imgs/logo-hot-sale-2024.svg"
-					class="-top-20 right-0 w-20 sm:w-32"
-					alt="HOT SALE 2024"
-				/>
+			<div class="flex flex-col items-center gap-y-5 sm:items-start">
+				<div class="flex items-center gap-x-5 rounded-xl bg-[#ff3657] p-5">
+					<img
+						src="https://assets.hotsale.com.mx/public/hotsale-mx/imgs/logo-hot-sale-2024.svg"
+						class="-top-20 right-0 w-20 sm:w-32"
+						alt="HOT SALE 2024"
+					/>
+					<div class="text-left font-bold sm:text-2xl">
+						<p class="text-[#FFEA00]">15 AL 23 DE MAYO</p>
+						<p class="text-xs sm:text-lg text-white">
+							<span class="font-normal">QUEDAN</span>
+							{22 - now.getDate()} DÍAS {timeH}:{timeM}:{timeS}
+						</p>
+					</div>
+				</div>
 				<h3 class="max-w-72 text-center leading-relaxed text-[#00a8e0] md:text-left md:text-xl">
 					Prueba tu suerte en este <span class="inline-block font-bold text-[#e72d3b]">
 						HOT SALE</span
