@@ -31,7 +31,7 @@
 <main class="flex flex-col items-center justify-center gap-x-10 gap-y-5 text-slate-800 lg:flex-row">
 	<!--Spinner-->
 	<section class="relative mt-5 grid justify-items-center">
-		<ul class:rotate class="background-{n} shadow-xl" in:scale|global={{ start: 1.1, opacity: 1 }}>
+		<ul class:rotate class="background-{n}" in:scale|global={{ start: 1.1, opacity: 1 }}>
 			<!--Options-->
 			{#each options.filter((t) => t.inPlay) as option, i (option.id)}
 				<li class="position-{i + 1}-{n}" animate:flip>
@@ -44,7 +44,7 @@
 		<!--Center of wheel-->
 		{#if !rotate}
 			<button
-				class="spinner-button wheel-center btn-primary absolute"
+				class="spinner-button wheel-center btn-primary absolute shadow-xl"
 				in:scale|global
 				out:fade
 				on:click={async () => {
@@ -62,21 +62,21 @@
 				25%
 			</div>
 		{/if}
-		<div class="arrow-head absolute drop-shadow-xl" />
+		<div class="arrow-head absolute" />
 	</section>
 	<!--Result-->
 	<section class="m-4 grid">
 		{#if completed}
 			<!--Result-->
-			<div class="flex justify-center shadow-xl" in:slide|global={{ delay: 400 }} out:slide|global>
+			<div class="flex justify-center" in:slide|global={{ delay: 400 }} out:slide|global>
 				<div
-					class="flex flex-col gap-y-5 rounded-xl border border-slate-800 bg-yellow-400 px-5 py-5 font-serif font-bold leading-loose sm:px-20"
+					class="flex flex-col gap-y-5 rounded-xl border border-slate-800 bg-yellow-400 px-5 py-5 font-serif font-bold leading-loose shadow-xl sm:px-20"
 				>
 					<h3 class="text-2xl">¡Felicidades, has ganado!</h3>
 
 					<div class="flex flex-col">
 						<div class="text-6xl" in:fade|global={{ delay: 400 }} out:slide|global>25%</div>
-						<div in:fly|global={{ delay: 800, x: -50 }} out:slide|global class="text-md">
+						<div in:fly|global={{ delay: 800, x: -50 }} out:slide|global class="text-md leading-normal">
 							de descuento con nosotros
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 							target="_blank"
 							class="btn btn-primary"
 						>
-							Reclamar Descuento
+							Reclamar
 						</a>
 					</div>
 				</div>
@@ -158,7 +158,7 @@
 	}
 	.winner {
 		animation-name: blinkingBG;
-		animation-duration: 0.3s;
+		animation-duration: 0.5s;
 		animation-iteration-count: 5;
 		animation-timing-function: ease-in-out;
 		border: 1px solid black;
