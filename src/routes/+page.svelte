@@ -120,7 +120,7 @@
 		place-items: center;
 		box-sizing: border-box;
 		border-radius: 50%;
-		border: 4px solid saddlebrown;
+		border: 4px solid slategray;
 	}
 
 	.rotate {
