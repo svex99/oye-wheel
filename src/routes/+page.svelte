@@ -2,7 +2,7 @@
 	import { tick } from 'svelte';
 	import { scale, slide, fly, fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	import { options } from '$lib';
+	import { options, message } from '$lib';
 
 	// spinner and button
 	let rotate = false;
@@ -28,25 +28,23 @@
 	}
 </script>
 
-<main>
+<main class="flex flex-col items-center justify-center gap-x-10 gap-y-5 text-slate-800 lg:flex-row">
 	<!--Spinner-->
-	<section class="grid justify-items-center relative mt-10">
-		<ul
-			class:rotate
-			class="background-{n} text-slate-700"
-			in:scale|global={{ start: 1.1, opacity: 1 }}
-		>
+	<section class="relative mt-5 grid justify-items-center">
+		<ul class:rotate class="background-{n} shadow-xl" in:scale|global={{ start: 1.1, opacity: 1 }}>
 			<!--Options-->
 			{#each options.filter((t) => t.inPlay) as option, i (option.id)}
-				<li class="text-3xl font-bold position-{i + 1}-{n}" animate:flip>
-					<span title={option.text} class:adjust class="px-5">{option.icon}</span>
+				<li class="position-{i + 1}-{n}" animate:flip>
+					<span title={option.text} class:adjust class="px-5 text-lg font-bold sm:text-3xl">
+						{option.icon}
+					</span>
 				</li>
 			{/each}
 		</ul>
 		<!--Center of wheel-->
 		{#if !rotate}
 			<button
-				class="btn-primary spinner-button absolute wheel-center"
+				class="spinner-button wheel-center btn-primary absolute"
 				in:scale|global
 				out:fade
 				on:click={async () => {
@@ -58,24 +56,21 @@
 			</button>
 		{:else if final}
 			<div
-				class="absolute wheel-center winner p-2 bg-yellow-200 dark:bg-yellow-400"
-				class:text-6xl={n < 5}
-				class:text-5xl={n >= 5 && n < 8}
-				class:text-4xl={n >= 8}
+				class="wheel-center winner absolute bg-yellow-400 p-2 text-2xl sm:text-5xl"
 				transition:scale|global
 			>
 				25%
 			</div>
 		{/if}
-		<div class="absolute arrow-head" />
+		<div class="arrow-head absolute drop-shadow-xl" />
 	</section>
 	<!--Result-->
-	<section class="grid m-4">
-		{#if completed}
+	<section class="m-4 grid">
+		{#if !completed}
 			<!--Result-->
-			<div class="flex justify-center" in:slide|global={{ delay: 400 }} out:slide|global>
+			<div class="flex justify-center shadow-xl" in:slide|global={{ delay: 400 }} out:slide|global>
 				<div
-					class="border border-black leading-loose flex gap-y-5 flex-col py-5 px-20 rounded-xl bg-yellow-200 dark:bg-yellow-400 font-bold font-serif text-black"
+					class="flex flex-col gap-y-5 rounded-xl border border-slate-800 bg-yellow-400 px-5 py-5 font-serif font-bold leading-loose sm:px-20"
 				>
 					<h3 class="text-2xl">¡Felicidades, has ganado!</h3>
 
@@ -87,16 +82,22 @@
 					</div>
 
 					<div class="font-sans">
-						<a href="https://wa.me/+523333915701" target="_blank" class="btn btn-primary"
-							>Reclamar Descuento</a
+						<a
+							href="https://wa.me/+523333915701?text={message}"
+							target="_blank"
+							class="btn btn-primary"
 						>
+							Reclamar Descuento
+						</a>
 					</div>
 				</div>
 			</div>
 		{:else}
-			<div>
-				<h3>Prueba suerte y obtén un descuento en este HOT SALE.</h3>
-			</div>
+			<h3 class="max-w-72 text-center leading-relaxed md:text-left md:text-xl">
+				Prueba tu suerte en este <span class="inline-block font-bold text-red-500"> HOT SALE</span>
+				y obtén hasta
+				<span class="font-bold text-red-500">25%</span> de descuento en aparatos auditivos
+			</h3>
 		{/if}
 	</section>
 </main>
@@ -166,9 +167,9 @@
 	.arrow-head {
 		width: 0;
 		height: 0;
-		border-left: calc(var(--spinner-radius) / 20) solid transparent;
-		border-right: calc(var(--spinner-radius) / 20) solid transparent;
-		border-top: calc(var(--spinner-radius) / 10) solid #555;
+		border-left: calc(var(--spinner-radius) / 15) solid transparent;
+		border-right: calc(var(--spinner-radius) / 15) solid transparent;
+		border-top: calc(var(--spinner-radius) / 7) solid #555;
 		top: calc(var(--spinner-radius) / -10 + 0.25rem);
 	}
 
