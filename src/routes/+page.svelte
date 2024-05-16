@@ -73,7 +73,7 @@
 					spinWheel();
 				}}
 			>
-				Girar Rueda
+				Girar Ruleta
 			</button>
 		{:else if final}
 			<div
