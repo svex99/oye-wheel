@@ -11,5 +11,7 @@ export const options = [
 	{ id: uid++, inPlay: true, icon: '25%', text: 'text' }
 ];
 
+export const completedCookieKey = 'wheel-may-2024-completed';
+
 export const message =
 	'Hola, he ganado un descuento del 25% en su sitio web, código de promoción: 25OFFHSALE. ¿Puede darme informacion sobre como aprovecharlo?';

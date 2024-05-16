@@ -2,19 +2,21 @@
 	import { tick } from 'svelte';
 	import { scale, slide, fly, fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	import { options, message } from '$lib';
+	import { options, message, completedCookieKey } from '$lib';
+
+	export let data;
 
 	// spinner and button
-	let rotate = false;
+	let completed = data.completed;
+	let rotating = false;
 	let final = false;
-	let completed = false;
 	let adjust = false;
 
 	// new addition
 	let n = options.length;
 
 	function spinWheel() {
-		rotate = true;
+		rotating = true;
 		setTimeout(() => {
 			adjust = true;
 		}, 500);
@@ -24,14 +26,17 @@
 		setTimeout(() => {
 			final = false;
 			completed = true;
+			document.cookie = `${completedCookieKey}=true; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 		}, 5000);
 	}
 </script>
 
-<main class="flex flex-col items-center min-h-screen justify-center gap-x-10 gap-y-5 text-slate-800 lg:flex-row">
+<main
+	class="flex min-h-screen flex-col items-center justify-center gap-x-10 gap-y-5 text-slate-800 lg:flex-row"
+>
 	<!--Spinner-->
 	<section class="relative mt-5 grid justify-items-center">
-		<ul class:rotate class="background-{n}" in:scale|global={{ start: 1.1, opacity: 1 }}>
+		<ul class:rotate={rotating} class="background-{n}" in:scale|global={{ start: 1.1, opacity: 1 }}>
 			<!--Options-->
 			{#each options.filter((t) => t.inPlay) as option, i (option.id)}
 				<li class="position-{i + 1}-{n}" animate:flip>
@@ -42,7 +47,7 @@
 			{/each}
 		</ul>
 		<!--Center of wheel-->
-		{#if !rotate}
+		{#if !completed && !rotating}
 			<button
 				class="spinner-button wheel-center btn-primary absolute shadow-xl"
 				in:scale|global
