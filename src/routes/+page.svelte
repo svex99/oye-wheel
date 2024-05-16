@@ -28,7 +28,7 @@
 			final = false;
 			completed = true;
 			document.cookie = `${completedCookieKey}=true; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-		}, 5000);
+		}, 6000);
 	}
 </script>
 
@@ -172,8 +172,8 @@
 	}
 	.winner {
 		animation-name: blinkingBG;
-		animation-duration: 0.5s;
-		animation-iteration-count: 5;
+		animation-duration: 1s;
+		animation-iteration-count: 10;
 		animation-timing-function: ease-in-out;
 		border: 1px solid black;
 	}
