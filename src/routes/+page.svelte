@@ -10,7 +10,7 @@
 	// spinner and button
 	let completed = data.completed;
 	let rotating = false;
-	let final = false;
+	let final = completed;
 	let adjust = false;
 
 	// new addition
@@ -25,10 +25,9 @@
 			final = true;
 		}, 4000);
 		setTimeout(() => {
-			final = false;
 			completed = true;
 			document.cookie = `${completedCookieKey}=true; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-		}, 6000);
+		}, 5000);
 	}
 </script>
 
@@ -54,7 +53,7 @@
 		<!--Center of wheel-->
 		{#if !completed && !rotating}
 			<button
-				class="spinner-button wheel-center btn-primary absolute shadow-xl"
+				class="spinner-button wheel-center bg-[#e72d3b] text-white hover:bg-[#e72d3b] hover:bg-[#e72d3b]/90 absolute shadow-xl"
 				in:scale|global
 				out:fade
 				on:click={async () => {
@@ -80,7 +79,7 @@
 			<!--Result-->
 			<div class="flex justify-center" in:slide|global={{ delay: 400 }} out:slide|global>
 				<div
-					class="flex flex-col gap-y-5 rounded-xl border border-slate-800 bg-yellow-400 px-5 py-5 font-serif font-bold leading-loose shadow-xl sm:px-20"
+					class="flex flex-col gap-y-5 rounded-xl border border-slate-800 bg-yellow-400 px-5 py-5 font-bold leading-loose shadow-xl sm:px-20"
 				>
 					<h3 class="text-2xl">¡Felicidades, has ganado!</h3>
 
@@ -99,7 +98,7 @@
 						<a
 							href="https://wa.me/+523333915701?text={message}"
 							target="_blank"
-							class="btn btn-primary"
+							class="btn border-none bg-[#e72d3b] text-white hover:bg-[#e72d3b] hover:bg-[#e72d3b]/90"
 						>
 							Reclamar
 						</a>
@@ -107,11 +106,20 @@
 				</div>
 			</div>
 		{:else}
-			<h3 class="max-w-72 text-center leading-relaxed md:text-left md:text-xl">
-				Prueba tu suerte en este <span class="inline-block font-bold text-red-500"> HOT SALE</span>
-				y obtén hasta
-				<span class="font-bold text-red-500">25%</span> de descuento en aparatos auditivos
-			</h3>
+			<div class="flex flex-col items-center sm:items-start gap-y-5">
+				<img
+					src="https://assets.hotsale.com.mx/public/hotsale-mx/imgs/logo-hot-sale-2024.svg"
+					class="-top-20 right-0 w-20"
+					alt="HOT SALE 2024"
+				/>
+				<h3 class="max-w-72 text-center leading-relaxed text-[#00a8e0] md:text-left md:text-xl">
+					Prueba tu suerte en este <span class="inline-block font-bold text-[#e72d3b]">
+						HOT SALE</span
+					>
+					y obtén hasta
+					<span class="font-bold text-[#e72d3b]">25%</span> de descuento en aparatos auditivos
+				</h3>
+			</div>
 		{/if}
 	</section>
 </main>

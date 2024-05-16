@@ -14,4 +14,4 @@ export const options = [
 export const completedCookieKey = 'wheel-may-2024-completed';
 
 export const message =
-	'Hola, he ganado un descuento del 25% en su sitio web, código de promoción: 25OFFHSALE. ¿Puede darme informacion sobre como aprovecharlo?';
+	'Hola! He ganado un descuento del 25% en la compra de mis aparatos y una cita gratis, ¿me comparte los horarios para agendarla, por favor?';
