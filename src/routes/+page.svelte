@@ -109,7 +109,7 @@
 			<div class="flex flex-col items-center sm:items-start gap-y-5">
 				<img
 					src="https://assets.hotsale.com.mx/public/hotsale-mx/imgs/logo-hot-sale-2024.svg"
-					class="-top-20 right-0 w-20"
+					class="-top-20 right-0 w-20 sm:w-32"
 					alt="HOT SALE 2024"
 				/>
 				<h3 class="max-w-72 text-center leading-relaxed text-[#00a8e0] md:text-left md:text-xl">
