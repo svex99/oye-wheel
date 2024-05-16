@@ -28,7 +28,7 @@
 	}
 </script>
 
-<main class="flex flex-col items-center justify-center gap-x-10 gap-y-5 text-slate-800 lg:flex-row">
+<main class="flex flex-col items-center min-h-screen justify-center gap-x-10 gap-y-5 text-slate-800 lg:flex-row">
 	<!--Spinner-->
 	<section class="relative mt-5 grid justify-items-center">
 		<ul class:rotate class="background-{n}" in:scale|global={{ start: 1.1, opacity: 1 }}>
@@ -76,7 +76,11 @@
 
 					<div class="flex flex-col">
 						<div class="text-6xl" in:fade|global={{ delay: 400 }} out:slide|global>25%</div>
-						<div in:fly|global={{ delay: 800, x: -50 }} out:slide|global class="text-md leading-normal">
+						<div
+							in:fly|global={{ delay: 800, x: -50 }}
+							out:slide|global
+							class="text-md leading-normal"
+						>
 							de descuento con nosotros
 						</div>
 					</div>
