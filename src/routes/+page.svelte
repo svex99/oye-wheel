@@ -66,7 +66,7 @@
 	</section>
 	<!--Result-->
 	<section class="m-4 grid">
-		{#if !completed}
+		{#if completed}
 			<!--Result-->
 			<div class="flex justify-center shadow-xl" in:slide|global={{ delay: 400 }} out:slide|global>
 				<div
