@@ -3,6 +3,7 @@
 	import { scale, slide, fly, fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import { options, message, completedCookieKey } from '$lib';
+	import retry from '$lib/assets/retry.svg';
 
 	export let data;
 
@@ -41,7 +42,11 @@
 			{#each options.filter((t) => t.inPlay) as option, i (option.id)}
 				<li class="position-{i + 1}-{n}" animate:flip>
 					<span title={option.text} class:adjust class="px-5 text-lg font-bold sm:text-3xl">
-						{option.icon}
+						{#if option.icon === 'retry'}
+							<img src={retry} class="w-5 sm:w-7" alt="retry" />
+						{:else}
+							{option.icon}
+						{/if}
 					</span>
 				</li>
 			{/each}
