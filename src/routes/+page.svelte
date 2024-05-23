@@ -129,7 +129,7 @@
 						<p class="text-[#FFEA00]">15 AL 23 DE MAYO</p>
 						<p class="text-xs sm:text-lg text-white">
 							<span class="font-normal">QUEDAN</span>
-							{22 - now.getDate()} DÍAS {timeH}:{timeM}:{timeS}
+							{23 - now.getDate()} DÍAS {timeH}:{timeM}:{timeS}
 						</p>
 					</div>
 				</div>
